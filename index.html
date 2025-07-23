@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>متجر ياسين</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- AOS CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <!-- SweetAlert2 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/CSS/style.css" />
+
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(to right, #667eea, #764ba2);
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .navbar-custom {
+      background: linear-gradient(to right, #4e54c8, #8f94fb);
+      z-index: 999;
+    }
+
+    .navbar-custom .nav-link,
+    .navbar-custom .navbar-brand {
+      color: #fff !important;
+    }
+
+    .navbar-custom .nav-link.active {
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    footer {
+      background-color: #1f1f2e;
+      color: #fff;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      z-index: 10;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- خلفية الجسيمات -->
+<div id="particles-js"></div>
+
+<!-- الهيدر -->
+<nav class="navbar navbar-expand-lg fixed-top navbar-custom shadow">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#"><i class="fas fa-store"></i> متجر ياسين</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link fw-semibold active" href="#"><i class="fas fa-home"></i> الرئيسية</a></li>
+        <li class="nav-item"><a class="nav-link fw-semibold" href="#"><i class="fas fa-box"></i> المنتجات</a></li>
+        <li class="nav-item">
+          <a class="nav-link fw-semibold position-relative" href="cart.html">
+            <i class="fas fa-shopping-cart"></i> السلة
+            <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- المنتجات -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-2">منتجاتنا</h2>
+    <p class="text-center mb-5">
+      <span id="typed-text" style="font-size: 1.2rem; color: #fff; font-weight: 500;"></span>
+    </p>
+    <div class="product-grid row g-4">
+
+     <div class="row g-4">
+
+  <!-- كرت: سماعة رأس -->
+  <!-- كرت 1: سماعة رأس -->
+<div class="col-md-3" data-aos="fade-up">
+  <div class="card product-card border-0 shadow-lg text-center">
+    <img src="assets/images/headphones.jpg" class="card-img-top rounded-top img-fit" alt="سماعة رأس">
+    <div class="card-body bg-gradient text-white rounded-bottom">
+      <h5 class="card-title fw-bold">سماعة رأس</h5>
+      <p class="card-text">جودة صوت ممتازة وتصميم أنيق.</p>
+      <button class="btn btn-outline-light btn-sm mt-2 add-to-cart" 
+              data-name="سماعة رأس" data-price="150" data-img="assets/images/headphones.jpg">
+        <i class="fas fa-cart-plus"></i> أضف إلى السلة
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- كرت 2: لابتوب -->
+<div class="col-md-3" data-aos="fade-up">
+  <div class="card product-card border-0 shadow-lg text-center">
+    <img src="assets/images/lab.jpg" class="card-img-top rounded-top img-fit" alt="لابتوب">
+    <div class="card-body bg-gradient text-white rounded-bottom">
+      <h5 class="card-title fw-bold">لابتوب</h5>
+      <p class="card-text">أداء عالي مناسب لجميع الاستخدامات.</p>
+      <button class="btn btn-outline-light btn-sm mt-2 add-to-cart" 
+              data-name="لابتوب" data-price="1500" data-img="assets/images/lab.jpg">
+        <i class="fas fa-cart-plus"></i> أضف إلى السلة
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- كرت 3: ساعة ذكية -->
+<div class="col-md-3" data-aos="fade-up">
+  <div class="card product-card border-0 shadow-lg text-center">
+    <img src="assets/images/watch.jpg" class="card-img-top rounded-top img-fit" alt="ساعة ذكية">
+    <div class="card-body bg-gradient text-white rounded-bottom">
+      <h5 class="card-title fw-bold">ساعة ذكية</h5>
+      <p class="card-text">ساعة أنيقة مقاومة للماء.</p>
+      <button class="btn btn-outline-light btn-sm mt-2 add-to-cart" 
+              data-name="ساعة ذكية" data-price="1150" data-img="assets/images/watch.jpg">
+        <i class="fas fa-cart-plus"></i> أضف إلى السلة
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- كرت 4: نظارة شمسية -->
+<div class="col-md-3" data-aos="fade-up">
+  <div class="card product-card border-0 shadow-lg text-center">
+    <img src="assets/images/sunglasses.jpg" class="card-img-top rounded-top img-fit" alt="نظارة شمسية">
+    <div class="card-body bg-gradient text-white rounded-bottom">
+      <h5 class="card-title fw-bold">نظارة شمسية</h5>
+      <p class="card-text">تحمي من الشمس وتمنحك أناقة.</p>
+      <button class="btn btn-outline-light btn-sm mt-2 add-to-cart" 
+              data-name="نظارة شمسية" data-price="50" data-img="assets/images/sunglasses.jpg">
+        <i class="fas fa-cart-plus"></i> أضف إلى السلة
+      </button>
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+
+    </div>
+  </div>
+</section>
+
+<!-- الفوتر -->
+<footer class="text-center py-3">
+  <div class="container">
+    <p class="mb-0">جميع الحقوق محفوظة &copy; متجر ياسين 2025</p>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/JS/script.js"></script>
+
+<!-- AOS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>AOS.init();</script>
+
+<!-- Vanilla Tilt -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+<script>
+  VanillaTilt.init(document.querySelectorAll(".card"), {
+    max: 15, speed: 400, glare: true, "max-glare": 0.2
+  });
+</script>
+
+<!-- Particles JS -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+<script>
+  particlesJS("particles-js", {
+    "particles": {
+      "number": { "value": 50, "density": { "enable": true, "value_area": 800 } },
+      "color": { "value": "#ffffff" },
+      "shape": { "type": "circle" },
+      "opacity": { "value": 0.5 },
+      "size": { "value": 3, "random": true },
+      "line_linked": {
+        "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1
+      },
+      "move": { "enable": true, "speed": 2 }
+    },
+    "interactivity": {
+      "events": {
+        "onhover": { "enable": true, "mode": "grab" },
+        "onclick": { "enable": true, "mode": "push" }
+      },
+      "modes": {
+        "grab": { "distance": 140, "line_linked": { "opacity": 1 } },
+        "push": { "particles_nb": 4 }
+      }
+    },
+    "retina_detect": true
+  });
+</script>
+
+<!-- Typed.js -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+  new Typed('#typed-text', {
+    strings: [
+      "مرحبًا بك في متجر ياسين 👋",
+      "أفضل المنتجات التقنية بأفضل الأسعار 💡",
+      "سماعات، ساعات، لابتوبات والمزيد 🛒",
+      "اطلب الآن... التوصيل فوري 🚚"
+    ],
+    typeSpeed: 50,
+    backSpeed: 25,
+    backDelay: 2000,
+    loop: true
+  });
+</script>
+
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  document.querySelectorAll(".add-to-cart").forEach(button => {
+    button.addEventListener("click", () => {
+      Swal.fire({
+        icon: 'success',
+        title: 'تمت الإضافة',
+        text: '✅ تم إضافة المنتج إلى السلة بنجاح!',
+        confirmButtonText: 'تمام'
+      });
+
+      const cartCount = document.getElementById("cart-count");
+      let count = parseInt(cartCount.textContent) || 0;
+      cartCount.textContent = count + 1;
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>سلة المشتريات</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/CSS/style.css" />
+
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #f8f9fa;
+      padding-top: 80px; /* تعويض الهيدر الثابت */
+    }
+
+    .cart-item img {
+      width: 100px;
+      height: auto;
+    }
+
+    #loader {
+      display: none;
+    }
+
+    #success-alert {
+      display: none;
+    }
+
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .fade-in-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .navbar-custom {
+      background: linear-gradient(to right, #4e54c8, #8f94fb);
+      z-index: 999;
+    }
+
+    .navbar-custom .nav-link,
+    .navbar-custom .navbar-brand {
+      color: #fff !important;
+    }
+
+    footer {
+      background: #343a40;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header/Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top navbar-custom shadow">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html"><i class="fas fa-store"></i> متجر ياسين</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link fw-semibold" href="index.html"><i class="fas fa-home"></i> الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#"><i class="fas fa-box"></i> المنتجات</a></li>
+          <li class="nav-item">
+            <a class="nav-link fw-semibold position-relative" href="cart.html">
+              <i class="fas fa-shopping-cart"></i> السلة
+              <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-5">
+    <h2 class="mb-4 text-center">🛒 سلة المشتريات</h2>
+    <div id="loader" class="text-center my-4">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">جار التحميل...</span>
+      </div>
+    </div>
+    <div id="success-alert" class="alert alert-success text-center w-50 mx-auto"></div>
+    <div id="cart-items" class="row gy-3"></div>
+    <div class="text-end mt-4">
+      <h5 id="total-price" class="alert alert-info d-inline-block"></h5>
+    </div>
+    <div class="text-center mt-3">
+      <button class="btn btn-danger me-2" id="clear-cart">
+        <i class="fas fa-trash"></i> إفراغ السلة
+      </button>
+      <a href="checkout.html" class="btn btn-success">
+        <i class="fas fa-credit-card"></i> إتمام الطلب
+      </a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>جميع الحقوق محفوظة &copy; متجر ياسين 2025</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    const showLoader = () => {
+      document.getElementById('loader').style.display = 'block';
+    };
+    const hideLoader = () => {
+      document.getElementById('loader').style.display = 'none';
+    };
+    const showSuccess = (msg) => {
+      const alertBox = document.getElementById('success-alert');
+      alertBox.textContent = msg;
+      alertBox.style.display = 'block';
+      setTimeout(() => {
+        alertBox.style.display = 'none';
+      }, 2000);
+    };
+    const renderCart = () => {
+      showLoader();
+      setTimeout(() => {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const container = document.getElementById('cart-items');
+        const totalBox = document.getElementById('total-price');
+        container.innerHTML = '';
+        let total = 0;
+        if (cart.length === 0) {
+          container.innerHTML = `<div class="text-center"><p class="alert alert-info">السلة فارغة 😢</p></div>`;
+          totalBox.textContent = '';
+          hideLoader();
+          return;
+        }
+        cart.forEach((item, index) => {
+          total += parseFloat(item.price);
+          const html = `
+            <div class="col-md-6 cart-item fade-in-up">
+              <div class="card p-3 d-flex flex-row align-items-center justify-content-between">
+                <img src="${item.img}" alt="${item.name}" class="img-thumbnail me-3" />
+                <div>
+                  <h5>${item.name}</h5>
+                  <p>السعر: ${item.price} ر.س</p>
+                </div>
+                <button class="btn btn-outline-danger btn-sm" onclick="removeItem(${index})">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+          `;
+          container.innerHTML += html;
+        });
+        totalBox.textContent = `الإجمالي: ${total.toFixed(2)} ر.س`;
+        hideLoader();
+        revealOnScroll();
+      }, 500);
+    };
+    const removeItem = (index) => {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+      showSuccess('🗑️ تم حذف المنتج بنجاح!');
+    };
+    document.getElementById('clear-cart').addEventListener('click', () => {
+      localStorage.removeItem('cart');
+      renderCart();
+      showSuccess('🧹 تم إفراغ السلة!');
+    });
+    const revealOnScroll = () => {
+      const cards = document.querySelectorAll('.fade-in-up');
+      const triggerBottom = window.innerHeight * 0.9;
+      cards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        if (cardTop < triggerBottom) {
+          card.classList.add('visible');
+        }
+      });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', renderCart);
+  </script>
+</body>
+</html>

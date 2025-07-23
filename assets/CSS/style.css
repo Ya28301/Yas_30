@@ -1,0 +1,147 @@
+body {
+  background: linear-gradient(to right, #667eea, #764ba2);
+  font-family: 'Cairo', sans-serif;
+  padding-top: 80px; /* عشان الهيدر الثابت ما يغطي المحتوى */
+}
+
+/* خلفية بنفسجية مدموجة */
+.bg-light-purple {
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+}
+
+/* كروت المنتجات */
+.product-card {
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  color: #fff;
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+}
+
+/* إطار الصورة بدون خلفية بيضاء */
+.product-img-container {
+  padding: 10px;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.product-card .card-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.product-card .card-text {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  color: #f5f5f5;
+}
+
+.product-card .btn-outline-light {
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+.product-card .btn-outline-light:hover {
+  background-color: #fff;
+  color: #6a11cb;
+}
+
+/* تنسيق النافبار */
+nav.navbar {
+  font-family: "Cairo", sans-serif;
+}
+nav.navbar .nav-link {
+  position: relative;
+  font-weight: bold;
+}
+nav.navbar .nav-link:hover {
+  color: #007bff !important;
+}
+nav.navbar .nav-link #cart-count {
+  font-size: 0.7rem;
+}
+
+/* الأزرار العامة */
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+}
+.btn-primary:hover {
+  background-color: #0062cc;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+}
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+/* شبكة المنتجات */
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px 0;
+}
+
+.card {
+  width: 300px;
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+.card .card-img-top {
+  height: 250px;
+  object-fit: cover;
+  width: 100%;
+  transition: transform 0.3s ease-in-out;
+}
+.card .card-img-top:hover {
+  transform: scale(1.05);
+}
+.card .card-body {
+  text-align: center;
+}
+.card .card-body h5 {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.card .card-body .card-text {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+.card .card-body button {
+  background-color: #007bff;
+  border: none;
+}
+.card .card-body button:hover {
+  background-color: #0062cc;
+}
+
+/* رسبونسيف */
+@media (max-width: 768px) {
+  .product-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  .card {
+    width: 90% !important;
+  }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .product-grid {
+    justify-content: space-around;
+  }
+  .card {
+    width: 45% !important;
+  }
+}

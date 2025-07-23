@@ -1,0 +1,16 @@
+nav.navbar {
+  font-family: $font-main;
+
+  .nav-link {
+    position: relative;
+    font-weight: bold;
+
+    &:hover {
+      color: $main-color !important;
+    }
+
+    #cart-count {
+      font-size: 0.7rem;
+    }
+  }
+}
